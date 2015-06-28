@@ -108,7 +108,9 @@ inMemoryRealmId = _inMemoryRealmId;
 
 - (RLMResults *)fetchObjectsInRealm:(RLMRealm *)realm
 {
-    RLMResults *fetchResults = [NSClassFromString(self.entityName) allObjectsInRealm:realm];
+    Class class = NSClassFromString(self.entityName);
+    NSAssert(class,
+    RLMResults *fetchResults = [class allObjectsInRealm:realm];
     
     // If we have a predicate use it
     if (self.predicate) {
