@@ -109,7 +109,7 @@ inMemoryRealmId = _inMemoryRealmId;
 - (RLMResults *)fetchObjectsInRealm:(RLMRealm *)realm
 {
     Class class = NSClassFromString(self.entityName);
-    NSAssert(class,
+    NSAssert(class,@"unable to find class '%@',self.entityName");
     RLMResults *fetchResults = [class allObjectsInRealm:realm];
     
     // If we have a predicate use it
